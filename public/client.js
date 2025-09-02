@@ -58,6 +58,21 @@ async function login(){
 // Expose for inline onclick
 window.login = login;
 
+// NEW: logout handler
+async function logout() {
+    try { await fetch('/logout', { method: 'POST' }); } catch {}
+    // Inform server to remove us from the online list (without disconnect)
+    try { socket.emit('leave'); } catch {}
+    // Reset client state/UI
+    currentUser = null;
+    if ($.msg) $.msg.value = '';
+    if ($.chat) $.chat.innerHTML = '';
+    if ($.onlineUsers) $.onlineUsers.textContent = '';
+    if ($.chatUI) $.chatUI.style.display = 'none';
+    if ($.auth) $.auth.style.display = 'block';
+}
+window.logout = logout;
+
 const msgEl = $.msg;
 if (msgEl) {
     msgEl.addEventListener('keydown',(e)=>{ if(e.key==='Enter'){ e.preventDefault(); sendMsg(); } });

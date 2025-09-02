@@ -109,6 +109,15 @@ app.get('/session', (req, res) => {
     else res.json({ loggedIn: false });
 });
 
+// NEW: logout endpoint
+app.post('/logout', (req, res) => {
+    req.session.destroy(err => {
+        if (err) return res.status(500).json({ success: false });
+        res.clearCookie('sid', { path: '/' });
+        res.json({ success: true });
+    });
+});
+
 // Message edit/delete (only Serpentine)
 app.post('/edit', (req, res) => {
     if (req.session.user !== 'Serpentine') return res.status(403).json({ success: false });
@@ -165,6 +174,15 @@ io.on('connection', (socket) => {
 
         socket.emit('loadMessages', messages);
         io.emit('onlineUsers', Object.keys(onlineUsers));
+    });
+
+    // NEW: allow client to leave without disconnecting the socket
+    socket.on('leave', () => {
+        if (socket.username && onlineUsers[socket.username] === socket.id) {
+            delete onlineUsers[socket.username];
+            socket.username = null;
+            io.emit('onlineUsers', Object.keys(onlineUsers));
+        }
     });
 
     socket.on('chatMessage', (msg) => {
