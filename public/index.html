@@ -1,48 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Chat</title>
-    <script src="/socket.io/socket.io.js"></script>
+    <meta charset="UTF-8">
+    <title>Chat Web App</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1>Chat</h1>
-<input id="username" placeholder="Enter username" />
-<button onclick="login()">Login</button>
-<ul id="messages"></ul>
-<input id="msg" placeholder="Type a message" />
-<button onclick="sendMessage()">Send</button>
-<h3>Online Users:</h3>
-<ul id="users"></ul>
+<div id="auth-container">
+    <form id="register-form">
+        <input id="reg-username" placeholder="Username" maxlength="30" required>
+        <input type="password" id="reg-password" placeholder="Password" required>
+        <button>Register</button>
+    </form>
 
-<script>
-    const socket = io();
+    <form id="login-form">
+        <input id="login-username" placeholder="Username" maxlength="30" required>
+        <input type="password" id="login-password" placeholder="Password" required>
+        <button>Login</button>
+    </form>
+</div>
 
-    function login() {
-        const username = document.getElementById("username").value;
-        socket.emit("login", username);
-    }
+<div id="chat-container" style="display:none;">
+    <div id="theme-switcher">
+        <label>Theme: </label>
+        <select id="theme-select">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+            <option value="yellow">Yellow</option>
+            <option value="rainbow">Rainbow</option>
+            <option value="hacker">Hacker</option>
+        </select>
+    </div>
 
-    function sendMessage() {
-        const msg = document.getElementById("msg").value;
-        socket.emit("chat message", msg);
-        document.getElementById("msg").value = "";
-    }
+    <div id="users"></div>
+    <div id="messages"></div>
 
-    socket.on("chat message", (data) => {
-        const li = document.createElement("li");
-        li.textContent = data.user + ": " + data.text;
-        document.getElementById("messages").appendChild(li);
-    });
+    <form id="chat-form">
+        <input id="chat-input" placeholder="Message">
+        <input type="text" id="chat-to" placeholder="Private to (optional)">
+        <input type="file" id="chat-image">
+        <button>Send</button>
+    </form>
+</div>
 
-    socket.on("userlist", (users) => {
-        const list = document.getElementById("users");
-        list.innerHTML = "";
-        users.forEach(u => {
-            const li = document.createElement("li");
-            li.textContent = u;
-            list.appendChild(li);
-        });
-    });
-</script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="client.js"></script>
 </body>
 </html>
