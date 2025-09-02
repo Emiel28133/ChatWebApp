@@ -2,45 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Chat Web App</title>
+    <title>ChatWebApp</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="auth-container">
-    <form id="register-form">
-        <input id="reg-username" placeholder="Username" maxlength="30" required>
-        <input type="password" id="reg-password" placeholder="Password" required>
-        <button>Register</button>
-    </form>
-
-    <form id="login-form">
-        <input id="login-username" placeholder="Username" maxlength="30" required>
-        <input type="password" id="login-password" placeholder="Password" required>
-        <button>Login</button>
-    </form>
+<noscript>JavaScript is required to use this app.</noscript>
+<div id="auth">
+    <h2>Login / Register</h2>
+    <input id="username" placeholder="Username (max 30 chars)" maxlength="30" required autocomplete="username">
+    <input id="password" type="password" placeholder="Password" required autocomplete="current-password">
+    <button onclick="register()">Register</button>
+    <button onclick="login()">Login</button>
+    <p id="authMsg"></p>
 </div>
 
-<div id="chat-container" style="display:none;">
-    <div id="theme-switcher">
-        <label>Theme: </label>
-        <select id="theme-select">
+<div id="chatUI" style="display:none;">
+    <div id="themeSwitcher">
+        <select id="themeSelect" onchange="setTheme(this.value)">
             <option value="light">Light</option>
             <option value="dark">Dark</option>
-            <option value="yellow">Yellow</option>
+            <option value="yellow">Piss</option>
             <option value="rainbow">Rainbow</option>
             <option value="hacker">Hacker</option>
+            <option value="ultradark">Ultra Dark</option>
         </select>
     </div>
-
-    <div id="users"></div>
-    <div id="messages"></div>
-
-    <form id="chat-form">
-        <input id="chat-input" placeholder="Message">
-        <input type="text" id="chat-to" placeholder="Private to (optional)">
-        <input type="file" id="chat-image">
-        <button>Send</button>
-    </form>
+    <div id="onlineUsers"></div>
+    <div id="chat"></div>
+    <input id="msg" placeholder="Type message (max 200 chars)" maxlength="200">
+    <button onclick="sendMsg()">Send</button>
+    <input type="file" id="imgUpload" accept="image/png,image/jpeg,image/gif,image/webp" />
 </div>
 
 <script src="/socket.io/socket.io.js"></script>

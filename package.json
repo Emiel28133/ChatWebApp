@@ -1,25 +1,27 @@
 {
-  "name": "website",
+  "name": "chatwebapp",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "express": "^4.21.2",
+    "express-session": "^1.18.2",
+    "multer": "^2.0.2",
+    "socket.io": "^4.8.1"
+  },
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Emiel28133/ChatWebApp.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "bcrypt": "^6.0.0",
-    "bcryptjs": "^3.0.2",
-    "body-parser": "^2.2.0",
-    "cookie-parser": "^1.4.7",
-    "cors": "^2.8.5",
-    "express": "^5.1.0",
-    "express-session": "^1.18.2",
-    "multer": "^2.0.2",
-    "nodemon": "^3.1.10",
-    "socket.io": "^4.8.1"
-  }
+  "bugs": {
+    "url": "https://github.com/Emiel28133/ChatWebApp/issues"
+  },
+  "homepage": "https://github.com/Emiel28133/ChatWebApp#readme"
 }

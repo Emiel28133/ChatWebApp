@@ -1,8 +1,18 @@
-body { font-family: sans-serif; margin:0; padding:0; background:#fff; color:#000; }
-#chat-container { padding: 20px; }
-#messages { height: 300px; overflow-y: scroll; border:1px solid #ccc; margin-bottom:10px; padding:10px; }
-#users { margin-bottom:10px; }
-.dark { background:#111; color:#eee; }
-.yellow { background:#fffd87; color:#000; }
-.rainbow { background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet); color:#fff; }
-.hacker { background:#000; color:#0f0; font-family: monospace; }
+body { font-family: Arial; margin:0; padding:0; background:#f0f0f0; }
+#auth, #chatUI { padding:20px; }
+#chat { border:1px solid #ccc; height:550px; overflow-y:auto; margin-bottom:10px; padding:10px; }
+.message { margin-bottom:5px; }
+.message img { max-width:150px; display:block; margin-top:5px; }
+button { margin-left:5px; }
+
+/* Themes */
+body.light { background:#fff; color:#000; }
+body.dark { background:#222; color:#eee; }
+body.yellow { background:#fffae3; color:#333; }
+body.rainbow { background:linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet); color:#fff; }
+body.hacker { background:#000; color:#0f0; font-family: monospace; }
+
+/* NEW: Ultra Dark */
+body.ultradark { background:#000; color:#e5e5e5; }
+/* Optional minor polish for Ultra Dark */
+body.ultradark #chat { border-color:#333; }
