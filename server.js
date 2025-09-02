@@ -3,9 +3,10 @@ const http = require('http');
 const { Server } = require('socket.io');
 const session = require('express-session');
 const fs = require('fs');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs'); // switched from bcrypt to bcryptjs
 const multer = require('multer');
 const path = require('path');
+
 
 const app = express();
 const server = http.createServer(app);
