@@ -28,7 +28,7 @@ ChatWebApp is een minimalistische chattoepassing die realtime berichtenuitwissel
 - Admin-actie: gebruiker “Serpentine” mag berichten bewerken/verwijderen
 
 ## Live demo & links
-- Live demo (Render): <!-- vervang met jouw Render-URL, bv. https://jouw-app.onrender.com -->
+- Live demo (Render): https://chatwebapp-c97c.onrender.com
 - Broncode (GitHub): https://github.com/Emiel28133/ChatWebApp
 
 ## Technische stack
